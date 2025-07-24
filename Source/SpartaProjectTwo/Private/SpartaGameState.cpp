@@ -226,19 +226,21 @@ void ASpartaGameState::FirstUpdateHUD()
 				{
 					LevelIndexText->SetText(FText::FromString(FString::Printf(TEXT("LEVEL : %d"), CurrentLevelIndex + 1)));
 				}
-				//test
-				//if (CurrentLevelIndex==2)
-				if (CurrentLevelIndex<3)
+				if (CurrentLevelIndex==2)
 				{
 					if (UTextBlock* StateText = Cast<UTextBlock>(HUDWidget->GetWidgetFromName(TEXT("StateText"))))
 					{
 						if (KRFont.FontObject)
 						{
-							UE_LOG(LogTemp,Warning,TEXT("한글 SetFont is Completed"))
+							UE_LOG(LogTemp,Warning,TEXT("SetFont is Completed"))
 							StateText->SetFont(KRFont);
 						}
-						StateText->SetText(FText::FromString(FString::Printf(TEXT("과제과제 SetFont is 한글 확인용 Completed"))));
-
+						StateText->SetText(FText::FromString(FString::Printf(TEXT("지뢰 함정 활성화"))));
+						if (KRFont.TypefaceFontName.IsValid())
+						{
+							UE_LOG(LogTemp,Warning,TEXT("SetFont is Completed is %s"), *KRFont.TypefaceFontName.ToString())
+							StateText->SetFont(KRFont);
+						}
 						FTimerHandle DestroyTimerHandle;
 						TWeakObjectPtr<UTextBlock>  WeakTextPtr = StateText;
 
